@@ -1,0 +1,18 @@
+current directory: /Users/ksanchu/ghq/github.com/1021ky/rails-x-clone/vendor/bundle/ruby/3.3.0/gems/websocket-driver-0.7.6/ext/websocket-driver
+/Users/ksanchu/.rbenv/versions/3.3.4/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /Users/ksanchu/ghq/github.com/1021ky/rails-x-clone/vendor/bundle/ruby/3.3.0/gems/websocket-driver-0.7.6/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20240921-90918-kky6uv sitelibdir\=./.gem.20240921-90918-kky6uv clean
+
+current directory: /Users/ksanchu/ghq/github.com/1021ky/rails-x-clone/vendor/bundle/ruby/3.3.0/gems/websocket-driver-0.7.6/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20240921-90918-kky6uv sitelibdir\=./.gem.20240921-90918-kky6uv
+compiling websocket_mask.c
+linking shared-object websocket_mask.bundle
+
+current directory: /Users/ksanchu/ghq/github.com/1021ky/rails-x-clone/vendor/bundle/ruby/3.3.0/gems/websocket-driver-0.7.6/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20240921-90918-kky6uv sitelibdir\=./.gem.20240921-90918-kky6uv install
+/usr/bin/install -c -m 0755 websocket_mask.bundle ./.gem.20240921-90918-kky6uv
+
+current directory: /Users/ksanchu/ghq/github.com/1021ky/rails-x-clone/vendor/bundle/ruby/3.3.0/gems/websocket-driver-0.7.6/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20240921-90918-kky6uv sitelibdir\=./.gem.20240921-90918-kky6uv clean
