@@ -108,13 +108,84 @@ bundlerを使うのと、rbenv-localを使うのが良いらしい。
 まずはオーソドックスなものを試すということで。
 
 ただ、どのタイミングで入ったのかわからないのだが、bundlerが入っていた。
-なので、bundlerを使ってrailsをインストールする。
+
 
 ```zsh
-bundle gem rails-x-clone
+ksanchu@KeisukenoMacBook-Air rails-x-clone % which bundle
+/Users/ksanchu/.rbenv/shims/bundle
+ksanchu@KeisukenoMacBook-Air rails-x-clone %
 ```
 
-基本はデフォルトの値を指定。リンターだけ、rubocopではなく、standardを使うようにした。
-ざっと見た感じ、standardはrubocopと同じこと＋αをやってくれるらしいので。
-リンターだけオーソドックスなものにしなかったのは、最新の書き方を学べるだろうという理由。
+なので、bundlerを使ってrailsをインストールする。
+
+まずbundlerでGemfileを作成する。
+プロジェクトごとにgemを管理したいので、インストール先も設定する。
+
+```zsh
+bundle init
+bundle config set path './vendor/bundle'
+```
+
+railsをインストールする。6系を使いたかったので、バージョン指定をする。
+
+```zsh
+bundle add rails --version "~> 6"
+```
+
+
+rails newでプロジェクトを作成する。
+`--skip-bundle`をつけることで、Gemfileに記述されたgemをインストールしない。
+一度内容を確認してからインストールできるようなのでそれでやる。
+
+```zsh
+bundle exec rails new . -d postgresql --skip-bundle
+```
+
+いかが最後に出力された
+
+```
+Skipping `rails webpacker:install` because `bundle install` was skipped.
+To complete setup, you must run `bundle install` followed by `rails webpacker:install`.
+```
+
+bundle installしていないので、webpackerのインストールができていない。
+というわけで、bundle installをする。
+
+```
+bundle install
+
+
+...
+Bundled gems are installed into `./vendor/bundle`
+Post-install message from rubyzip:
+RubyZip 3.0 is coming!
+**********************
+
+The public API of some Rubyzip classes has been modernized to use named
+parameters for optional arguments. Please check your usage of the
+following classes:
+  * `Zip::File`
+  * `Zip::Entry`
+  * `Zip::InputStream`
+  * `Zip::OutputStream`
+
+Please ensure that your Gemfiles and .gemspecs are suitably restrictive
+to avoid an unexpected breakage when 3.0 is released (e.g. ~> 2.3.0).
+See https://github.com/rubyzip/rubyzip for details. The Changelog also
+lists other enhancements and bugfixes that have been implemented since
+version 2.3.0.
+Post-install message from webdrivers:
+Webdrivers gem update options
+*****************************
+
+Selenium itself now manages drivers by default: https://www.selenium.dev/documentation/selenium_manager
+* If you are using Ruby 3+ — please update to Selenium 4.11+ and stop requiring this gem
+* If you are using Ruby 2.6+ and Selenium 4.0+ — this version will work for now
+* If you use Ruby < 2.6 or Selenium 3, a 6.0 version of this gem with additional support is planned
+
+Restrict your gemfile to "webdrivers", "= 5.3.0" to stop seeing this message
+```
+
+メッセージがでているが、エラーは出ていないのですすむ。
+
 
