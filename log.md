@@ -189,3 +189,24 @@ Restrict your gemfile to "webdrivers", "= 5.3.0" to stop seeing this message
 メッセージがでているが、エラーは出ていないのですすむ。
 
 
+JSバッケージをインストールする。
+
+```zsh
+ksanchu@KeisukenoMacBook-Air rails-x-clone % yarn install
+yarn install v1.22.22
+info No lockfile found.
+[1/4] 🔍  Resolving packages...
+[2/4] 🚚  Fetching packages...
+[3/4] 🔗  Linking dependencies...
+[4/4] 🔨  Building fresh packages...
+
+success Saved lockfile.
+✨  Done in 1.26s.
+ksanchu@KeisukenoMacBook-Air rails-x-clone %
+```
+
+参考にしている本によると、rails newした時点でインストールはされているらしい。
+実際、インストールはされていたようだが、なぜかlockファイルがなくて、作成された。
+
+正常な状態になったことには変わりないので、次に進む。
+
