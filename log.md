@@ -266,3 +266,12 @@ ruby lsp用にruby version managerをrbenvで設定し、launch.jsonに設定を
 Ruby Test Explorerも入れると、TESTINGのタブにテストが表示されるようになって実行もでき、テスト結果も表示されたが、デバッグはできず・・。
 
 outputのログを見たが、ちょっと調べてもわからなかったので、いったん保留。
+
+RSpecはBDDを実践するために使われたものなので、使うのならばコメントはGiven-When-Thenの形式で書くのがよいかも。
+けどそれは、なにのテストをしているかによるかな。
+
+行単位で指定すれば、example指定で実行できることもわかった。
+`bundle exec rspec /Users/ksanchu/ghq/github.com/1021ky/rails-x-clone/spec/experiments/string_spec.rb:21`
+
+タグをつけていれば、タグ指定でも
+`bundle exec rspec /Users/ksanchu/ghq/github.com/1021ky/rails-x-clone/spec/experiments/string_spec.rb --tag=exception`
