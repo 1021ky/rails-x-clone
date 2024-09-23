@@ -73,4 +73,8 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+
+  # 開発環境はwebconsoleを使えるようにする
+  # まだデプロイ先が決まっていないので、全てのIPからのアクセスを許可する
+  config.web_console.allowed_ips instead = ['0.0.0.0/24']
 end
