@@ -188,6 +188,11 @@ Restrict your gemfile to "webdrivers", "= 5.3.0" to stop seeing this message
 
 メッセージがでているが、エラーは出ていないのですすむ。
 
+-> あとで、rails実行時にエラーが出た。
+webpacker.ymlがないというエラーだったので、実行されなかったというrails webpacker:installを実行したら、エラーは解消して無事起動した。
+
+
+```zsh
 
 JSバッケージをインストールする。
 
@@ -210,3 +215,10 @@ ksanchu@KeisukenoMacBook-Air rails-x-clone %
 
 正常な状態になったことには変わりないので、次に進む。
 
+その後、rails sでサーバーを起動すると、エラー。webpackerのエラーだった。
+bin/rails webpacker:installを実行すると、エラーが解消した。
+
+`bin/rails s -b 0.0.0.0  `でサーバーを起動すると、localhost:3000でアクセスできなかった。
+DBの設定が漏れていた。
+
+せっかくなので、dotenv-railsを使って環境変数を設定できるようにして、再度サーバーを起動するとエラー無しでアクセスできた。
