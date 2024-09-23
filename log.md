@@ -1,5 +1,7 @@
 # 作業ログ
 
+[Ruby on Rails 6 実践ガイド](https://book.impress.co.jp/books/1118101134)を参考にしながら、Railsアプリケーションを作成する。
+
 * バックエンド
   * Ruby on Railsを使う
     * ローカルの開発環境
@@ -222,3 +224,45 @@ bin/rails webpacker:installを実行すると、エラーが解消した。
 DBの設定が漏れていた。
 
 せっかくなので、dotenv-railsを使って環境変数を設定できるようにして、再度サーバーを起動するとエラー無しでアクセスできた。
+
+## Railsでテストを実行できるようにする
+
+rspecを使ってテストを書くことにする。
+書籍でも勧められているため。
+
+```
+ksanchu@KeisukenoMacBook-Air rails-x-clone % ./bin/rails g rspec:install
+
+...
+
+      create  .rspec
+      create  spec
+      create  spec/spec_helper.rb
+      create  spec/rails_helper.rb
+ksanchu@KeisukenoMacBook-Air rails-x-clone %
+```
+
+おためしテストを書いて実行してみる。
+
+```zsh
+
+ksanchu@KeisukenoMacBook-Air rails-x-clone % mkdir -p spec/experiments
+ksanchu@KeisukenoMacBook-Air rails-x-clone % code spec/experiments/string_spec.rb
+ksanchu@KeisukenoMacBook-Air rails-x-clone % bundle exec rspec spec/experiments/string_spec.rb
+.
+
+Finished in 0.00331 seconds (files took 0.06294 seconds to load)
+1 example, 0 failures
+
+ksanchu@KeisukenoMacBook-Air rails-x-clone %
+
+```
+
+`bundle exec rspec`でもテストは実行できた。
+
+できればVSCodeでもテストを実行できるようにしたいので、rdbgとruby lspを入れた。
+ruby lsp用にruby version managerをrbenvで設定し、launch.jsonに設定を追加した。
+
+Ruby Test Explorerも入れると、TESTINGのタブにテストが表示されるようになって実行もでき、テスト結果も表示されたが、デバッグはできず・・。
+
+outputのログを見たが、ちょっと調べてもわからなかったので、いったん保留。
