@@ -275,3 +275,74 @@ RSpecはBDDを実践するために使われたものなので、使うのなら
 
 タグをつけていれば、タグ指定でも
 `bundle exec rspec /Users/ksanchu/ghq/github.com/1021ky/rails-x-clone/spec/experiments/string_spec.rb --tag=exception`
+
+## ルーティング
+
+config/routes.rbにルーティングを記述する。
+twitterなので、apiとadminとuserの名前空間を作成してみた。
+userは誰でもアクセスできるところとして定義したけれどもtopレベルにしてもよかったかも。
+
+```ruby
+Rails.application.routes.draw do
+  # 名前空間の名前を定義すると、URLのパスにその名前空間が追加される
+  namespace :api do
+    # #の前がコントローラー名、#の後がアクション名
+    # /apiでアクセスすると、Api::TopControllerのindexアクションが呼び出される
+    root "top#index"
+  end
+
+  namespace :admin do
+    root "top#index"
+  end
+
+  namespace :user do
+    root "top#index"
+  end
+end
+
+```
+
+railsコマンドでコントローラーを作成する。
+
+```zsh
+ksanchu@KeisukenoMacBook-Air rails-x-clone % bin/rails g controller api/top
+/Users/ksanchu/ghq/github.com/1021ky/rails-x-clone/vendor/bundle/ruby/3.3.0/gems/bootsnap-1.18.4/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:30: warning: /Users/ksanchu/.rbenv/versions/3.3.4/lib/ruby/3.3.0/base64.rb was loaded from the standard library, but will no longer be part of the default gems since Ruby 3.4.0. Add base64 to your Gemfile or gemspec. Also contact author of activesupport-6.1.7.8 to add base64 into its gemspec.
+/Users/ksanchu/ghq/github.com/1021ky/rails-x-clone/vendor/bundle/ruby/3.3.0/gems/bootsnap-1.18.4/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:30: warning: /Users/ksanchu/.rbenv/versions/3.3.4/lib/ruby/3.3.0/bigdecimal.rb was loaded from the standard library, but will no longer be part of the default gems since Ruby 3.4.0. Add bigdecimal to your Gemfile or gemspec. Also contact author of activesupport-6.1.7.8 to add bigdecimal into its gemspec.
+/Users/ksanchu/ghq/github.com/1021ky/rails-x-clone/vendor/bundle/ruby/3.3.0/gems/bootsnap-1.18.4/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:30: warning: /Users/ksanchu/.rbenv/versions/3.3.4/lib/ruby/3.3.0/mutex_m.rb was loaded from the standard library, but will no longer be part of the default gems since Ruby 3.4.0. Add mutex_m to your Gemfile or gemspec. Also contact author of activesupport-6.1.7.8 to add mutex_m into its gemspec.
+Running via Spring preloader in process 14275
+      create  app/controllers/api/top_controller.rb
+      invoke  erb
+      create    app/views/api/top
+      invoke  rspec
+ksanchu@KeisukenoMacBook-Air rails-x-clone %
+
+```
+
+で、対応するerbファイルを作成した。
+
+しかし、実行時エラー
+
+```zsh
+Template is missing
+Missing template tweet/top/:index, application/:index with {:locale=>[:ja], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :jbuilder]}. Searched in: * "/Users/ksanchu/ghq/github.com/1021ky/rails-x-clone/app/views" * "/Users/ksanchu/ghq/github.com/1021ky/rails-x-clone/vendor/bundle/ruby/3.3.0/gems/actiontext-6.1.7.8/app/views" * "/Users/ksanchu/ghq/github.com/1021ky/rails-x-clone/vendor/bundle/ruby/3.3.0/gems/actionmailbox-6.1.7.8/app/views"
+
+```
+
+次は、これを直す。
+
+単なるタイポだった。
+
+```
+  def index
+    render action: ":index"
+  end
+```
+
+を
+```
+  def index
+    render action: "index"
+  end
+```
+
+で解決。

@@ -1,5 +1,5 @@
 class Tweet::TopController < ApplicationController
   def index
-    render action: ":index"
+    render action: "index"
   end
 end
