@@ -346,3 +346,15 @@ Missing template tweet/top/:index, application/:index with {:locale=>[:ja], :for
 ```
 
 で解決。
+
+## レイアウトファイル
+
+先程作ったerbファイルを、ブラウザでアクセスしてみてみると、書いたこと以上にいろいろ書いてある。
+
+それらは、app/views/layouts/application.html.erbから読み込まれているようだ。
+
+app/views/layouts/application.html.erbの
+yieldの部分に、先程作成したerbファイルを読み込まれるようになっているらしい。
+
+もしlayoutを変えたいときは、Controllerでlayoutメソッドを使うといいらしい。
+
