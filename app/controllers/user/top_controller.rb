@@ -1,3 +1,4 @@
+# typed: false
 class User::TopController < ApplicationController
   def index
     render action ":index"

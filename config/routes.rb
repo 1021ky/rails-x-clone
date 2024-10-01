@@ -1,3 +1,4 @@
+# typed: strict
 Rails.application.routes.draw do
   # 名前空間の名前を定義すると、URLのパスにその名前空間が追加される
   namespace :api do

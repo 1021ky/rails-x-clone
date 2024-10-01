@@ -1,3 +1,4 @@
+# typed: strict
 require_relative "boot"
 # アプリケーションの設定を記述するファイル
 # 設定はhttps://railsguides.jp/v6.1/configuring.htmlを参照

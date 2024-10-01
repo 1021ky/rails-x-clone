@@ -1,3 +1,4 @@
+# typed: false
 require "spec_helper"
 
 # Stringクラスのテスト(文字列で指定することも可能)

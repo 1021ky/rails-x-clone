@@ -1,3 +1,4 @@
+# typed: true
 class Tweet::TopController < ApplicationController
   def index
     render action: "index"
