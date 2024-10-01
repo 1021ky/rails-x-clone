@@ -358,3 +358,62 @@ yieldの部分に、先程作成したerbファイルを読み込まれるよう
 
 もしlayoutを変えたいときは、Controllerでlayoutメソッドを使うといいらしい。
 
+## DBマイグレーション
+
+modelを作成するときは、rails g modelを使う。
+これによって、DBマイグレーション用のファイルが作成される。
+
+```zsh
+ksanchu@KeisukenoMacBook-Air rails-x-clone % bin/rails g model StaffMember
+Running via Spring preloader in process 94289
+      invoke  active_record
+      create    db/migrate/20240929232519_create_staff_members.rb
+      create    app/models/staff_member.rb
+      invoke    rspec
+      create      spec/models/staff_member_spec.rb
+```
+
+もし間違って作ってしまったときはdestroyを使う。
+
+```zsh
+ksanchu@KeisukenoMacBook-Air rails-x-clone % rails destroy model StaffMember
+Running via Spring preloader in process 95266
+      invoke  active_record
+      remove    db/migrate/20240929232519_create_staff_members.rb
+      remove    app/models/staff_member.rb
+      invoke    rspec
+      remove      spec/models/staff_member_spec.rb
+```
+
+あらためて、ユーザーモデルを作成する。
+
+```zsh
+ksanchu@KeisukenoMacBook-Air rails-x-clone % bin/rails g model XUser
+Running via Spring preloader in process 97069
+      invoke  active_record
+      create    db/migrate/20240929232900_create_x_users.rb
+      create    app/models/x_user.rb
+      invoke    rspec
+      create      spec/models/x_user_spec.rb
+ksanchu@KeisukenoMacBook-Air rails-x-clone %
+```
+
+ユーザーを追加するので、パスワードの保管について、copilotに聞いたことをメモ。
+
+```plaintext
+パスワードをハッシュ化するときのソルトはユーザーごとに変えるべきです。以下にその理由を説明します。
+
+理由
+レインボーテーブル攻撃の防止:
+
+レインボーテーブルは、事前に計算されたハッシュ値のリストです。ソルトを使わない場合、同じパスワードは同じハッシュ値になります。攻撃者はレインボーテーブルを使ってハッシュ値から元のパスワードを逆算できます。
+ユーザーごとに異なるソルトを使うことで、同じパスワードでも異なるハッシュ値が生成され、レインボーテーブル攻撃を防ぐことができます。
+パスワードの一意性の確保:
+
+異なるユーザーが同じパスワードを使っている場合でも、異なるソルトを使うことで異なるハッシュ値が生成されます。これにより、パスワードの一意性が確保され、セキュリティが向上します。
+```
+
+
+
+
+
