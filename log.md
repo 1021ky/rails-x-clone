@@ -415,5 +415,28 @@ ksanchu@KeisukenoMacBook-Air rails-x-clone %
 
 
 
+## DBにデータを入れる
 
+`bin/rails db:seed`を使うと、db/seeds.rbに記述されたデータがDBに入る。
+
+やり直すときは、`bin/rails db:reset`を使う。
+
+実際にデータが入ったか確認するには以下のコマンドが使える。
+
+`bin/rails r 'p StaffMember.all'`
+
+rはrunnerの略で、引数に渡されたコードを実行する。
+
+実際やってみた
+
+```zsh
+ksanchu@KeisukenoMacBook-Air rails-x-clone % ksanchu@KeisukenoMacBook-Air rails-x-clone % DISABLE_SPRING=1 RAILS_ENV=development bin/rails db:seed
+Creating x_users...
+ksanchu@KeisukenoMacBook-Air rails-x-clone % DISABLE_SPRING=1 RAILS_ENV=development bin/rails r "p XUser.count"
+1
+ksanchu@KeisukenoMacBook-Air rails-x-clone %
+```
+
+DISABLE_SPRING=1 をしないと実行できないのが、困る。
+なんなんだろう。
 
