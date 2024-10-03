@@ -440,3 +440,11 @@ ksanchu@KeisukenoMacBook-Air rails-x-clone %
 DISABLE_SPRING=1 をしないと実行できないのが、困る。
 なんなんだろう。
 
+## APIを作成する
+
+rails generate controller api/v1/tweets
+config/routes.rb ファイルを編集して、tweetsリソースのルートを追加します。
+シリアライザーを使って、JSON形式でデータを返すようにする。
+
+シリアライザーは、どうやらレスポンスの定義を簡単にできるものらしい。
+Controllerにレスポンスの定義をしなくてすむ。
