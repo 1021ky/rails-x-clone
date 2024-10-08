@@ -442,9 +442,37 @@ DISABLE_SPRING=1 をしないと実行できないのが、困る。
 
 ## APIを作成する
 
-rails generate controller api/v1/tweets
-config/routes.rb ファイルを編集して、tweetsリソースのルートを追加します。
+`rails generate controller api/v1/tweets`
+config/routes.rb ファイルを編集して、tweetsリソースのルートを追加する。
 シリアライザーを使って、JSON形式でデータを返すようにする。
 
 シリアライザーは、どうやらレスポンスの定義を簡単にできるものらしい。
 Controllerにレスポンスの定義をしなくてすむ。
+
+ざっくりとAPIを作るときに関連する要素は以下
+
+* リクエストを受け取れるようにする→ルーティング
+  * https://railsguides.jp/routing.html
+* リクエストを受け付けるとき
+  * リクエストを受け付けたときの全体の処理の流れを定義する→Controller
+    * https://railsguides.jp/action_controller_overview.html
+  * リクエストパラメータで許可したものだけ受け付けるようにする→Strong Parameters
+    * https://railsguides.jp/action_controller_overview.html#strong-parameters
+  * リクエストを一度格納する→Active Model
+    * https://railsguides.jp/active_model_basics.html (?)
+      * ?としているのは、Active Modelは必ずしもリクエストを格納するためのものではなく、"「必ずしもデータベースを必要としない、モデル風のRubyクラス」を構築するための機能を提供するもの"とあるため。
+      * もっと適切なものがあるかもしれない。
+    * パラメータの妥当性をチェックする→ActiveModel::Validations
+* メインの処理（ビジネスロジック）を行う→複雑さによる
+  * データベースのテーブル（少なめ）とのやり取りを行い、ロジックはシンプル→Active Record
+  * 複雑→さまざまな議論がされて、いろいろなやり方があるよう。
+    * https://techracho.bpsinc.jp/hachi8833/2021_01_07/14738
+    * https://techracho.bpsinc.jp/hachi8833/2022_03_17/46482
+    * https://tech.giftee.co.jp/entry/2023/02/20/000000
+* レスポンスを返すとき
+  * JSONやXMLなどのフォーマットでレスポンスを作成する→シリアライザー
+    * https://railsguides.jp/active_model_basics.html#serialization%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB
+  * HTMLでレスポンスを作成する→Action View
+    * https://railsguides.jp/action_view_overview.html
+  * 例外発生時に返すレスポンスを定義する→resuce_from
+    * https://railsguides.jp/action_controller_overview.html#rescue-from
