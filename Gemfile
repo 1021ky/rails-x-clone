@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 ruby '3.3.4'
 
 gem 'active_model_serializers'
+gem 'annotate'
 gem 'bcrypt', '~> 3.1.7'
 gem 'jbuilder', '~> 2.7'
 gem 'pg', '~> 1.1'
