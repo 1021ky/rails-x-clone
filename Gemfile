@@ -32,11 +32,8 @@ group :development do
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'rubocop'
   gem 'rubocop-rails'
-  # gem 'sorbet'
-  # gem 'sorbet-runtime'
   gem 'spring'
   gem 'stringio'
-  # gem 'watchman' # for sorbe
   gem 'web-console', '>= 4.1.0'
   gem 'webrick' # for dbmigrate
 end
