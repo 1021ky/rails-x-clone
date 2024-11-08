@@ -22,3 +22,8 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+* how to debug
+  * install rdbg debug
+  * run `RUBY_DEBUG_OPEN=true rails server` in your terminal
+  * run attach with rdbg in your vscode
