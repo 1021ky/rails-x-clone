@@ -1,3 +1,5 @@
 # typed: strict
-class Admin::TopController < ApplicationController
+module Admin
+  class TopController < ApplicationController
+  end
 end

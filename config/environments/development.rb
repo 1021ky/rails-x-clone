@@ -77,5 +77,5 @@ Rails.application.configure do
 
   # 開発環境はwebconsoleを使えるようにする
   # まだデプロイ先が決まっていないので、全てのIPからのアクセスを許可する
-  config.web_console.allowed_ips instead = ['0.0.0.0/24']
+  config.web_console.allowed_ips ['0.0.0.0/24']
 end

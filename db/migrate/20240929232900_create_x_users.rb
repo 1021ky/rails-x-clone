@@ -1,5 +1,8 @@
 # typed: true
 
+#
+# ユーザー追加
+#
 class CreateXUsers < ActiveRecord::Migration[6.1]
   def change
     # 登録したら基本的に変えないデータ
