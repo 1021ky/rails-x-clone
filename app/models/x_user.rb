@@ -11,5 +11,6 @@
 #  updated_at   :datetime         not null
 #
 # typed: strict
+
 class XUser < ApplicationRecord
 end
