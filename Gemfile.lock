@@ -346,6 +346,7 @@ DEPENDENCIES
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.7, >= 6.1.7.8)
   redis (~> 4.0)
+  rspec-core
   rspec-rails
   rubocop
   rubocop-rails

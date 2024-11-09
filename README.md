@@ -16,6 +16,12 @@ Things you may want to cover:
 * Database initialization
 
 * How to run the test suite
+  * bundle exec rspec
+
+* How to run the test in VS Code Test Explorer
+  * install [Ruby Test Explorer](https://marketplace.visualstudio.com/items?itemName=connorshea.vscode-ruby-test-adapter) Extension
+  * open Testing view and run test
+    * modifiy VS Code setting `"rubyTestExplorer.logpanel": true` and check output panel of Ruby Test Explorer when you can't run test
 
 * Services (job queues, cache servers, search engines, etc.)
 
