@@ -25,6 +25,8 @@ end
 group :development do
   gem 'base64' # for rubocop
   gem 'bigdecimal' # for rubocop
+  gem 'brakeman'
+  gem 'bundler-audit'
   gem 'debug'
   gem 'factory_bot'
   gem 'listen', '~> 3.3'
