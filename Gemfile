@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '3.3.4'
+ruby '3.3.2'
 
 gem 'active_model_serializers'
 gem 'annotate'
@@ -33,6 +33,7 @@ group :development do
   gem 'rdbg' # bundle binstub debugでbin/rdbgが作られる
   gem 'rubocop'
   gem 'rubocop-rails'
+  gem 'ruby-lsp'
   gem 'spring'
   gem 'stringio'
   gem 'web-console', '>= 4.1.0'
