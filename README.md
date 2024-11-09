@@ -30,6 +30,6 @@ Things you may want to cover:
 * ...
 
 * how to debug
-  * install rdbg debug
-  * run `RUBY_DEBUG_OPEN=true rails server` in your terminal
-  * run attach with rdbg in your vscode
+  * run `bundle install`
+  * run `bundle binstubs debug`
+  * open `Run and Debug` on VS Code and select `Debug Rails`

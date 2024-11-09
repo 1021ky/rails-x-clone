@@ -476,3 +476,81 @@ Controllerにレスポンスの定義をしなくてすむ。
     * https://railsguides.jp/action_view_overview.html
   * 例外発生時に返すレスポンスを定義する→resuce_from
     * https://railsguides.jp/action_controller_overview.html#rescue-from
+
+
+モデルのフィールドを確認しようとして、なにが定義されるのかわからなくて困った。
+gem 'annotate'を使うと、モデルのフィールドを確認できるらしい。
+
+```zsh
+ksanchu@KeisukenoMacBook-Air rails-x-clone % bundle install
+
+ksanchu@KeisukenoMacBook-Air rails-x-clone % bundle exec annotate --models
+Annotated (4): app/models/tweet.rb, spec/models/tweet_spec.rb, app/models/x_user.rb, spec/models/x_user_spec.rb
+```
+
+migration時に自動でコメントされるようにするには。
+
+```zsh
+
+ksanchu@KeisukenoMacBook-Air rails-x-clone % bundle exec rails g annotate:install
+Running via Spring preloader in process 14999
+      create  lib/tasks/auto_annotate_models.rake
+ksanchu@KeisukenoMacBook-Air rails-x-clone %
+```dotnetcli
+
+生成されたファイルで
+
+```ruby
+      'skip_on_db_migrate' => 'false',
+```
+
+となっていればOKっぽい。
+
+書いて動かしてみる
+
+```zsh
+ksanchu@KeisukenoMacBook-Air rails-x-clone % curl -X POST http://localhost:3000/api/tweet/top \
+     -H "Content-Type: application/json" \
+     -d '{"tweet": {"x_user_id": 1, "content": "Hello World"}}'
+```dotnetcli
+
+Routing Errorが出た。
+
+
+## デバッグしやすくする
+
+rdbgを使ってデバッグできるように。
+最初はグローバルにインストールしたrdbgでデバッグしようとしたが、Gemのバージョンの依存関係の問題でエラーになった。
+
+developmentグループにrdbgを追加して、bundle installをし、それを使ってデバッグすることにした。
+それならば、デバッグ対象となるアプリケーションとバージョンが合わない問題はでないと考えて。
+
+./bin以下にrdbgを追加して、デバッグを行った。
+./binに置くには、ただインストールするだけでは足りず、bundle binstubs debugで追加する必要があった。
+
+rdbgではなく、debugを追加したのは下記のようにエ出力されたため。
+```
+ksanchu@KeisukenoMacBook-Air rails-x-clone % bundle binstub rdbg
+rdbg has no executables, but you may want one from a gem it depends on.
+  debug has: rdbg
+```
+
+launch.jsonでrdbgを指定して、実行すると行けた。
+
+```json
+        {
+            "type": "rdbg",
+            "name": "Debug Rails",
+            "script": "s",
+            "request": "launch",
+            "command": "./bin/rails",
+            "cwd": "${workspaceRoot}",
+            "askParameters": false,
+            "rdbgPath": "./bin/rdbg"
+        },
+```
+
+script欄にrailsコマンドの引数のsを指定しているのは、違和感あるが、outputに出力されるコマンドは期待通りのものだったので、まずはこれで。
+
+rspecは専用の拡張機能として、Ruby Test Explorerがあるので、そちらを使うことにした。
+rspec-coreのインストールは必要だった。

@@ -6,6 +6,16 @@
     "configurations": [
         {
             "type": "rdbg",
+            "name": "Debug Rails",
+            "script": "s",
+            "request": "launch",
+            "command": "./bin/rails",
+            "cwd": "${workspaceRoot}",
+            "askParameters": false,
+            "rdbgPath": "./bin/rdbg"
+        },
+        {
+            "type": "rdbg",
             "name": "Debug current file with rdbg",
             "request": "launch",
             "script": "${file}",
@@ -17,6 +27,6 @@
             "type": "rdbg",
             "name": "Attach with rdbg",
             "request": "attach"
-        }
+        },
     ]
 }

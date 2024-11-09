@@ -30,6 +30,7 @@ group :development do
   gem 'listen', '~> 3.3'
   gem 'mutex_m' # for rubocop
   gem 'rack-mini-profiler', '~> 2.0'
+  gem 'rdbg' # bundle binstub debugでbin/rdbgが作られる
   gem 'rubocop'
   gem 'rubocop-rails'
   gem 'spring'
