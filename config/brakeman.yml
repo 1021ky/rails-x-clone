@@ -1,2 +1,0 @@
-skip_checks:
-  - EOLRails # rails 7に上げたら削除する
