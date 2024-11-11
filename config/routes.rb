@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   namespace :api do
     # #の前がコントローラー名、#の後がアクション名
     resources :tweet, only: %i[index create]
+    resources :users, only: %i[index create]
   end
 
   namespace :admin do
