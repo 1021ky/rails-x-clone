@@ -28,5 +28,21 @@
             "name": "Attach with rdbg",
             "request": "attach"
         },
+        {
+            "type": "rdbg",
+            "name": "Debug Rspec with current file",
+            "rdbgPath": "bundle exec rdbg",
+            "request": "launch",
+            "command": "rspec",
+            "script": "${file}",
+            "args": [
+                "-p",
+                "1357"
+            ],
+            "askParameters": true,
+            "env": {
+                "DATABASE_URL": "postgresql://postgres:postgres@localhost:5432/test"
+            }
+        }
     ]
 }
