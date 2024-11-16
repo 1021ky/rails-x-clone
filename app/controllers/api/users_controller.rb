@@ -6,9 +6,8 @@ module Api
     skip_before_action :verify_authenticity_token
 
     def index
-      id = params[:id]
-      user = XUser.find(id)
-      render json: user
+      users = XUser.all()
+      render json: users
     end
 
     def create
