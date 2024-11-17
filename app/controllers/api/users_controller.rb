@@ -5,10 +5,10 @@ module Api
   class UsersController < ApplicationController
     skip_before_action :verify_authenticity_token
 
-    def index
-      users = XUser.all()
-      render json: users
-    end
+    # def index
+    #   users = XUser.all()
+    #   render json: users
+    # end
 
     def show
       id = get_user_params
@@ -16,11 +16,11 @@ module Api
       render json: user
     end
 
-    def create
-      validated_param = create_user_params
-      res = XUser.create!(validated_param)
-      render json: res
-    end
+    # def create
+    #   validated_param = create_user_params
+    #   res = XUser.create!(validated_param)
+    #   render json: res
+    # end
 
     private
 
@@ -28,8 +28,8 @@ module Api
       params.require(:id)
     end
 
-    def create_user_params
-      params.require(:user).permit(:email, :name, :password)
-    end
+    # def create_user_params
+    #   params.require(:user).permit(:email, :name, :password)
+    # end
   end
 end
