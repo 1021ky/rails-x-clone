@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   # namespaceが定義されると、namespaceで指定されたシンボル名のパスの下でアクセスできるリソースを定義できる
   namespace :api do
     # #の前がコントローラー名、#の後がアクション名
+    resources :users, only: %i[index show create update destroy] # apiなのでnew editは除く
     resources :tweet, only: %i[index create]
-    resources :users, only: %i[index create]
   end
 
   namespace :admin do

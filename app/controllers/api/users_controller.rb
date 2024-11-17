@@ -10,6 +10,12 @@ module Api
       render json: users
     end
 
+    def show
+      id = get_user_params
+      user = XUser.find(id)
+      render json: user
+    end
+
     def create
       validated_param = create_user_params
       res = XUser.create!(validated_param)
@@ -17,6 +23,10 @@ module Api
     end
 
     private
+
+    def get_user_params
+      params.require(:id)
+    end
 
     def create_user_params
       params.require(:user).permit(:email, :name, :password)
