@@ -11,7 +11,7 @@ module Api
     # end
 
     def show
-      id = get_user_params
+      id = user_get_params
       user = XUser.find(id)
       render json: user
     end
@@ -24,7 +24,7 @@ module Api
 
     private
 
-    def get_user_params
+    def user_get_params
       params.require(:id)
     end
 
