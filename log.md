@@ -554,3 +554,27 @@ script欄にrailsコマンドの引数のsを指定しているのは、違和�
 
 rspecは専用の拡張機能として、Ruby Test Explorerがあるので、そちらを使うことにした。
 rspec-coreのインストールは必要だった。
+
+## rpecの並列化
+
+rspecの並列化を行うために、parallel_testsを使う。
+GitHub Actions CIで実行するときだけ有効化したいので、期待通り動作するかはactでためしてみた。
+
+```zsh
+Error: failed to start container: Error response from daemon: driver failed programming external connectivity on endpoint act-Ruby-on-Rails-CI-test-55a04154ccad5fb153d10df59b9450af422f3-5c74b499b8e65f6e7a58a13914a3ca6ef9f0415c3560576f3dfa93be516d2eaa (3f3e5a25fb4ef47f915621b8fac0f46ee572add03f6625d87d37b535b409ee5d): Bind for 0.0.0.0:5432 failed: port is already allocated
+ksanchu@KeisukenoMacBook-Air rails-x-clone %
+```
+
+並列化するためにDBが複数立ち上がるので、ポートが被ってしまうのだろう。
+
+## factory botでテストデータを用意する
+
+`bin/rails g factory_bot:model user`
+これで作れる。
+
+## ユーザーを追加するAPI
+
+ユーザーを追加するAPIを作成する。
+パスワードはまだ追加できていない。
+
+TODO: パスワードを追加する。
