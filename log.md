@@ -578,3 +578,6 @@ ksanchu@KeisukenoMacBook-Air rails-x-clone %
 パスワードはまだ追加できていない。
 
 TODO: パスワードを追加する。
+
+DBに送る前にアプリケーションでわかっているチェックはするべき。
+ActiveRecordでのバリデーションを使う。
