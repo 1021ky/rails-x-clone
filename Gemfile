@@ -20,6 +20,9 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'factory_bot'
+  gem 'factory_bot_rails'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -29,7 +32,6 @@ group :development do
   gem 'bundler-audit'
   gem 'debase', '0.2.5.beta2' # https://github.com/ruby-debug/debase/issues/108
   gem 'debug'
-  gem 'factory_bot'
   gem 'listen', '~> 3.3'
   gem 'mutex_m' # for rubocop
   gem 'rack-mini-profiler', '~> 2.0'
@@ -47,8 +49,6 @@ end
 
 group :test do
   gem 'capybara', '>= 3.26'
-  gem 'factory_bot_rails'
-  gem 'rspec-rails'
   gem 'selenium-webdriver', '>= 4.0.0.rc1'
   gem 'webdrivers'
 end
