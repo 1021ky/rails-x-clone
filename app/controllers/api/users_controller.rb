@@ -16,11 +16,16 @@ module Api
       render json: user
     end
 
-    # def create
-    #   validated_param = create_user_params
-    #   res = XUser.create!(validated_param)
-    #   render json: res
-    # end
+    def create
+      validated_params = user_create_params
+      user_params = {
+        "email": validated_params[:email],
+        "name": validated_params[:name]
+      }
+      res = XUser.create!(user_params)
+
+      render json: res
+    end
 
     private
 
@@ -28,7 +33,7 @@ module Api
       params.require(:id)
     end
 
-    def create_user_params
+    def user_create_params
       params.require(:user).permit(:email, :name, :password)
     end
   end
